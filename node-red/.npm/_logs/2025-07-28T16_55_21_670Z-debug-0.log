@@ -1,0 +1,34 @@
+0 verbose cli /usr/local/bin/node /usr/local/bin/npm
+1 info using npm@10.8.2
+2 info using node@v20.19.0
+3 silly config load:file:/usr/local/lib/node_modules/npm/npmrc
+4 silly config load:file:/data/.npmrc
+5 silly config load:file:/usr/src/node-red/.npmrc
+6 silly config load:file:/usr/local/etc/npmrc
+7 verbose title npm install node-red-contrib-prometheus-exporter
+8 verbose argv "install" "node-red-contrib-prometheus-exporter"
+9 verbose logfile logs-max:10 dir:/data/.npm/_logs/2025-07-28T16_55_21_670Z-
+10 verbose logfile /data/.npm/_logs/2025-07-28T16_55_21_670Z-debug-0.log
+11 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+12 silly logfile done cleaning log files
+13 silly idealTree buildDeps
+14 silly fetch manifest node-red-contrib-prometheus-exporter@~1.0.5
+15 silly packumentCache full:https://registry.npmjs.org/node-red-contrib-prometheus-exporter cache-miss
+16 http fetch GET 200 https://registry.npmjs.org/node-red-contrib-prometheus-exporter 1231ms (cache revalidated)
+17 silly packumentCache full:https://registry.npmjs.org/node-red-contrib-prometheus-exporter set size:21148 disposed:false
+18 silly placeDep ROOT node-red-contrib-prometheus-exporter@1.0.5 REPLACE for: node-red-project@0.0.1 want: ~1.0.5
+19 silly reify moves {}
+20 silly audit bulk request {
+20 silly audit   bintrees: [ '1.0.2' ],
+20 silly audit   'prom-client': [ '13.2.0' ],
+20 silly audit   tdigest: [ '0.1.2' ],
+20 silly audit   'node-red-contrib-prometheus-exporter': [ '1.0.5' ]
+20 silly audit }
+21 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 314ms
+22 silly audit report {}
+23 verbose cwd /data
+24 verbose os Linux 6.10.14-linuxkit
+25 verbose node v20.19.0
+26 verbose npm  v10.8.2
+27 verbose exit 0
+28 info ok

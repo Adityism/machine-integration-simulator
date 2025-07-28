@@ -1,0 +1,843 @@
+[
+    {
+        "id": "d1b7d8c.8f9e1f",
+        "type": "tab",
+        "label": "Smart Factory Pro",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a1b2c3d.4e5f6g",
+        "type": "mqtt-broker",
+        "name": "Mosquitto Broker",
+        "broker": "mosquitto",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true
+    },
+    {
+        "id": "h4i5j6k.7l8m9n",
+        "type": "mongodb",
+        "hostname": "mongodb",
+        "port": "27017",
+        "db": "smart_factory",
+        "name": "MongoDB Smart Factory"
+    },
+    {
+        "id": "k7l8m9n.0o1p2q",
+        "type": "ui_tab",
+        "name": "Factory Control Center",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "j6k7l8m.9n0o1p",
+        "type": "ui_group",
+        "name": "PLC Operations",
+        "tab": "k7l8m9n.0o1p2q",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "plc_analytics_group",
+        "type": "ui_group",
+        "name": "PLC Analytics",
+        "tab": "k7l8m9n.0o1p2q",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "cnc_group_123",
+        "type": "ui_group",
+        "name": "CNC Operations",
+        "tab": "k7l8m9n.0o1p2q",
+        "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "cnc_analytics_group",
+        "type": "ui_group",
+        "name": "CNC Analytics",
+        "tab": "k7l8m9n.0o1p2q",
+        "order": 4,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "4e1b1ed709f266ac",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#007AFF",
+                "baseColor": "#007AFF",
+                "baseFont": "-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',Helvetica,Arial,sans-serif",
+                "edited": true
+            },
+            "darkTheme": {
+                "default": "#007AFF",
+                "baseColor": "#007AFF",
+                "baseFont": "-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',Helvetica,Arial,sans-serif",
+                "edited": true
+            },
+            "customTheme": {
+                "name": "Apple Pro Theme",
+                "default": "#007AFF",
+                "baseColor": "#007AFF",
+                "baseFont": "-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',Helvetica,Arial,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#007AFF",
+                    "value": "#007AFF",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#000000",
+                    "edited": true
+                },
+                "page-backgroundColor": {
+                    "value": "#000000",
+                    "edited": true
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#1C1C1E",
+                    "edited": true
+                },
+                "group-textColor": {
+                    "value": "#FFFFFF",
+                    "edited": true
+                },
+                "group-borderColor": {
+                    "value": "rgba(255,255,255,0.1)",
+                    "edited": true
+                },
+                "group-backgroundColor": {
+                    "value": "#1C1C1E",
+                    "edited": true
+                },
+                "widget-textColor": {
+                    "value": "#FFFFFF",
+                    "edited": true
+                },
+                "widget-backgroundColor": {
+                    "value": "#2C2C2E",
+                    "edited": true
+                },
+                "widget-borderColor": {
+                    "value": "rgba(255,255,255,0.1)",
+                    "edited": true
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',Helvetica,Arial,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "blue",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "dark"
+            }
+        },
+        "site": {
+            "name": "Smart Factory Control Center",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "false",
+            "dateFormat": "MMM DD, YYYY • HH:mm:ss",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 4,
+                "py": 4
+            }
+        }
+    },
+    {
+        "id": "e6f7g8h.9a0b1c",
+        "type": "mqtt in",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "PLC Data In",
+        "topic": "plc/data",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "a1b2c3d.4e5f6g",
+        "inputs": 0,
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "g3h4i5j.6k7l8m",
+                "s5t6u7v.8w9x0y",
+                "f2g3h4i.5j6k7l"
+            ]
+        ]
+    },
+    {
+        "id": "cnc_mqtt_in",
+        "type": "mqtt in",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "CNC Data In",
+        "topic": "cnc/data",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "a1b2c3d.4e5f6g",
+        "inputs": 0,
+        "x": 110,
+        "y": 600,
+        "wires": [
+            [
+                "cnc_debug",
+                "cnc_mongodb",
+                "cnc_router"
+            ]
+        ]
+    },
+    {
+        "id": "cnc_debug",
+        "type": "debug",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Debug CNC Data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "g3h4i5j.6k7l8m",
+        "type": "mongodb out",
+        "z": "d1b7d8c.8f9e1f",
+        "mongodb": "h4i5j6k.7l8m9n",
+        "name": "Store PLC to MongoDB",
+        "collection": "plc_data",
+        "x": 380,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cnc_mongodb",
+        "type": "mongodb out",
+        "z": "d1b7d8c.8f9e1f",
+        "mongodb": "h4i5j6k.7l8m9n",
+        "name": "Store CNC to MongoDB",
+        "collection": "cnc_data",
+        "x": 380,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "s5t6u7v.8w9x0y",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Route PLC Dashboard Data",
+        "func": "// Route the same data to multiple dashboard components\nreturn [msg, msg, msg, msg, msg, msg];",
+        "outputs": 6,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 350,
+        "wires": [
+            [
+                "l8m9n0o.1p2q3r"
+            ],
+            [
+                "n0o1p2q.3r4s5t"
+            ],
+            [
+                "p2q3r4s.5t6u7v"
+            ],
+            [
+                "r4s5t6u.7v8w9x"
+            ],
+            [
+                "efficiency_calc"
+            ],
+            [
+                "uptime_calc"
+            ]
+        ]
+    },
+    {
+        "id": "cnc_router",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Route CNC Dashboard Data",
+        "func": "// Route the same data to multiple CNC dashboard components\nreturn [msg, msg, msg, msg, msg];",
+        "outputs": 5,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 720,
+        "wires": [
+            [
+                "cnc_temp_extract"
+            ],
+            [
+                "cnc_vibration_extract"
+            ],
+            [
+                "cnc_spindle_extract"
+            ],
+            [
+                "cnc_fault_extract"
+            ],
+            [
+                "cnc_performance_calc"
+            ]
+        ]
+    },
+    {
+        "id": "l8m9n0o.1p2q3r",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract Pressure",
+        "func": "if (msg.payload && msg.payload.analog_inputs && msg.payload.analog_inputs.pressure) {\n    msg.payload = msg.payload.analog_inputs.pressure;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 260,
+        "wires": [
+            [
+                "i5j6k7l.8m9n0o"
+            ]
+        ]
+    },
+    {
+        "id": "i5j6k7l.8m9n0o",
+        "type": "ui_gauge",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Pressure Gauge",
+        "group": "j6k7l8m.9n0o1p",
+        "order": 1,
+        "width": "6",
+        "height": "5",
+        "gtype": "donut",
+        "title": "System Pressure",
+        "label": "PSI",
+        "format": "{{value | number:1}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#30D158",
+            "#FF9F0A",
+            "#FF453A"
+        ],
+        "seg1": "30",
+        "seg2": "70",
+        "className": "apple-gauge",
+        "x": 780,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "n0o1p2q.3r4s5t",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract Flow Rate",
+        "func": "if (msg.payload && msg.payload.analog_inputs && msg.payload.analog_inputs.flow_rate) {\n    msg.payload = msg.payload.analog_inputs.flow_rate;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 320,
+        "wires": [
+            [
+                "m9n0o1p.2q3r4s"
+            ]
+        ]
+    },
+    {
+        "id": "m9n0o1p.2q3r4s",
+        "type": "ui_gauge",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Flow Rate Gauge",
+        "group": "j6k7l8m.9n0o1p",
+        "order": 2,
+        "width": "6",
+        "height": "5",
+        "gtype": "donut",
+        "title": "Flow Rate",
+        "label": "L/min",
+        "format": "{{value | number:1}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#30D158",
+            "#FF9F0A",
+            "#FF453A"
+        ],
+        "seg1": "15",
+        "seg2": "35",
+        "className": "apple-gauge",
+        "x": 790,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "p2q3r4s.5t6u7v",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract Motor Status",
+        "func": "if (msg.payload && msg.payload.output_states && msg.payload.output_states.motor_running !== undefined) {\n    msg.payload = msg.payload.output_states.motor_running;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 380,
+        "wires": [
+            [
+                "o1p2q3r.4s5t6u"
+            ]
+        ]
+    },
+    {
+        "id": "o1p2q3r.4s5t6u",
+        "type": "ui_switch",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Motor Running",
+        "label": "Motor Status",
+        "tooltip": "Motor Running Status",
+        "group": "j6k7l8m.9n0o1p",
+        "order": 3,
+        "width": "6",
+        "height": "3",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "play_arrow",
+        "oncolor": "#30D158",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "stop",
+        "offcolor": "#8E8E93",
+        "animate": false,
+        "className": "apple-switch",
+        "x": 780,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "r4s5t6u.7v8w9x",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract Error Code",
+        "func": "if (msg.payload && msg.payload.error_codes !== undefined) {\n    var status = msg.payload.error_codes || 'System Operational';\n    var color = status === 'System Operational' ? '#30D158' : '#FF453A';\n    msg.payload = {\n        text: status,\n        color: color\n    };\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 440,
+        "wires": [
+            [
+                "q3r4s5t.6u7v8w"
+            ]
+        ]
+    },
+    {
+        "id": "q3r4s5t.6u7v8w",
+        "type": "ui_text",
+        "z": "d1b7d8c.8f9e1f",
+        "group": "j6k7l8m.9n0o1p",
+        "order": 4,
+        "width": "6",
+        "height": "3",
+        "name": "System Status",
+        "label": "System Status",
+        "format": "<div class='status-indicator'><span class='status-dot' style='background-color: {{msg.payload.color}}'></span>{{msg.payload.text}}</div>",
+        "layout": "row-center",
+        "className": "apple-status",
+        "style": true,
+        "font": "-apple-system,BlinkMacSystemFont,'SF Pro Display'",
+        "fontSize": "16",
+        "color": "#FFFFFF",
+        "x": 770,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "efficiency_calc",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Calculate Efficiency",
+        "func": "if (msg.payload && msg.payload.analog_inputs) {\n    var pressure = msg.payload.analog_inputs.pressure || 0;\n    var flow = msg.payload.analog_inputs.flow_rate || 0;\n    var efficiency = Math.min((pressure * flow / 2000) * 100, 100);\n    msg.payload = Math.round(efficiency * 10) / 10;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 500,
+        "wires": [
+            [
+                "efficiency_display"
+            ]
+        ]
+    },
+    {
+        "id": "efficiency_display",
+        "type": "ui_gauge",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "System Efficiency",
+        "group": "plc_analytics_group",
+        "order": 1,
+        "width": "6",
+        "height": "5",
+        "gtype": "wave",
+        "title": "System Efficiency",
+        "label": "%",
+        "format": "{{value | number:1}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#FF453A",
+            "#FF9F0A",
+            "#30D158"
+        ],
+        "seg1": "60",
+        "seg2": "85",
+        "className": "apple-efficiency",
+        "x": 780,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "f2g3h4i.5j6k7l",
+        "type": "debug",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Debug PLC Data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "custom_css_inject",
+        "type": "ui_template",
+        "z": "d1b7d8c.8f9e1f",
+        "group": "j6k7l8m.9n0o1p",
+        "name": "Apple-Style CSS",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n/* Apple-inspired professional styling */\n.nr-dashboard-theme .md-card {\n    background-color: #1C1C1E !important;\n    border: 1px solid rgba(255,255,255,0.1) !important;\n    border-radius: 12px !important;\n    box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;\n    backdrop-filter: blur(20px) !important;\n}\n\n.nr-dashboard-theme .md-card-header {\n    background-color: transparent !important;\n    color: #FFFFFF !important;\n    font-weight: 600 !important;\n    font-size: 17px !important;\n    letter-spacing: -0.41px !important;\n}\n\n.nr-dashboard-theme .md-card-content {\n    background-color: transparent !important;\n    padding: 16px !important;\n}\n\n/* Gauge styling */\n.apple-gauge .gauge {\n    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3)) !important;\n}\n\n.apple-gauge text {\n    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display' !important;\n    font-weight: 500 !important;\n    fill: #FFFFFF !important;\n}\n\n/* Switch styling */\n.apple-switch .md-switch {\n    transform: scale(1.2) !important;\n}\n\n.apple-switch .md-switch-thumb {\n    background-color: #FFFFFF !important;\n    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;\n}\n\n/* Status indicator */\n.status-indicator {\n    display: flex !important;\n    align-items: center !important;\n    justify-content: center !important;\n    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display' !important;\n    font-weight: 500 !important;\n    font-size: 16px !important;\n    color: #FFFFFF !important;\n}\n\n.status-dot {\n    width: 8px !important;\n    height: 8px !important;\n    border-radius: 50% !important;\n    margin-right: 8px !important;\n    animation: pulse 2s infinite !important;\n}\n\n@keyframes pulse {\n    0% { opacity: 1; }\n    50% { opacity: 0.6; }\n    100% { opacity: 1; }\n}\n\n/* Uptime display */\n.uptime-display {\n    display: flex !important;\n    flex-direction: column !important;\n    align-items: center !important;\n    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display' !important;\n}\n\n.uptime-value {\n    font-size: 32px !important;\n    font-weight: 300 !important;\n    color: #007AFF !important;\n    line-height: 1 !important;\n}\n\n.uptime-unit {\n    font-size: 14px !important;\n    font-weight: 400 !important;\n    color: #8E8E93 !important;\n    margin-top: 4px !important;\n}\n\n/* Performance gauge */\n.apple-performance .gauge {\n    filter: drop-shadow(0 4px 20px rgba(0,122,255,0.3)) !important;\n}\n\n/* Efficiency gauge */\n.apple-efficiency .gauge {\n    filter: drop-shadow(0 4px 20px rgba(48,209,88,0.3)) !important;\n}\n\n/* Card group headers */\n.nr-dashboard-theme .md-toolbar-tools {\n    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display' !important;\n    font-weight: 600 !important;\n    font-size: 20px !important;\n    letter-spacing: -0.45px !important;\n    color: #FFFFFF !important;\n}\n\n/* General text improvements */\n.nr-dashboard-theme {\n    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text' !important;\n    -webkit-font-smoothing: antialiased !important;\n    -moz-osx-font-smoothing: grayscale !important;\n}\n\n/* Button improvements */\n.nr-dashboard-theme .md-button {\n    border-radius: 8px !important;\n    font-weight: 500 !important;\n    text-transform: none !important;\n    letter-spacing: -0.41px !important;\n}\n\n/* Value text improvements */\n.nr-dashboard-theme .value {\n    font-weight: 300 !important;\n    font-size: 28px !important;\n    color: #FFFFFF !important;\n}\n\n/* Label improvements */\n.nr-dashboard-theme .label {\n    font-weight: 400 !important;\n    font-size: 13px !important;\n    color: #8E8E93 !important;\n    text-transform: uppercase !important;\n    letter-spacing: 0.08px !important;\n}\n\n/* Responsive improvements */\n@media (max-width: 768px) {\n    .nr-dashboard-theme .md-card {\n        margin: 8px !important;\n        border-radius: 8px !important;\n    }\n    \n    .uptime-value {\n        font-size: 24px !important;\n    }\n}\n\n/* Dark mode enhancements */\n.nr-dashboard-theme .md-content {\n    background-color: #000000 !important;\n}\n\n.nr-dashboard-theme .layout-row {\n    background-color: transparent !important;\n}\n\n/* Subtle animations */\n.nr-dashboard-theme .md-card {\n    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;\n}\n\n.nr-dashboard-theme .md-card:hover {\n    transform: translateY(-2px) !important;\n    box-shadow: 0 8px 30px rgba(0,0,0,0.4) !important;\n}\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 150,
+        "y": 50,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "uptime_calc",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Calculate Uptime",
+        "func": "context.uptime = context.uptime || 0;\nif (msg.payload && msg.payload.output_states && msg.payload.output_states.motor_running) {\n    context.uptime += 0.1;\n}\nvar uptimeHours = (context.uptime / 36000).toFixed(1);\nmsg.payload = uptimeHours;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 560,
+        "wires": [
+            [
+                "uptime_display"
+            ]
+        ]
+    },
+    {
+        "id": "uptime_display",
+        "type": "ui_text",
+        "z": "d1b7d8c.8f9e1f",
+        "group": "plc_analytics_group",
+        "order": 2,
+        "width": "6",
+        "height": "5",
+        "name": "System Uptime",
+        "label": "",
+        "format": "<div class='uptime-display'><span class='uptime-value'>{{msg.payload}}</span><span class='uptime-unit'>Uptime (Hours)</span></div>",
+        "layout": "row-center",
+        "className": "apple-uptime",
+        "style": true,
+        "font": "-apple-system,BlinkMacSystemFont,'SF Pro Display'",
+        "fontSize": "24",
+        "color": "#007AFF",
+        "x": 780,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "cnc_temp_extract",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract CNC Temperature",
+        "func": "if (msg.payload && msg.payload.temperature !== undefined) {\n    msg.payload = msg.payload.temperature;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 680,
+        "wires": [
+            [
+                "cnc_temp_gauge"
+            ]
+        ]
+    },
+    {
+        "id": "cnc_temp_gauge",
+        "type": "ui_gauge",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "CNC Temperature",
+        "group": "cnc_group_123",
+        "order": 1,
+        "width": "6",
+        "height": "5",
+        "gtype": "donut",
+        "title": "Operating Temperature",
+        "label": "°C",
+        "format": "{{value | number:1}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#30D158",
+            "#FF9F0A",
+            "#FF453A"
+        ],
+        "seg1": "50",
+        "seg2": "75",
+        "className": "apple-gauge",
+        "x": 800,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "cnc_vibration_extract",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract Vibration",
+        "func": "if (msg.payload && msg.payload.vibration !== undefined) {\n    msg.payload = msg.payload.vibration;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 740,
+        "wires": [
+            [
+                "cnc_vibration_gauge"
+            ]
+        ]
+    },
+    {
+        "id": "cnc_vibration_gauge",
+        "type": "ui_gauge",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Vibration Level",
+        "group": "cnc_group_123",
+        "order": 2,
+        "width": "6",
+        "height": "5",
+        "gtype": "donut",
+        "title": "Vibration Level",
+        "label": "mm/s",
+        "format": "{{value | number:2}}",
+        "min": 0,
+        "max": "10",
+        "colors": [
+            "#30D158",
+            "#FF9F0A",
+            "#FF453A"
+        ],
+        "seg1": "3",
+        "seg2": "6",
+        "className": "apple-gauge",
+        "x": 790,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "cnc_spindle_extract",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract Spindle Speed",
+        "func": "if (msg.payload && msg.payload.spindle_speed !== undefined) {\n    msg.payload = msg.payload.spindle_speed;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 800,
+        "wires": [
+            [
+                "cnc_spindle_gauge"
+            ]
+        ]
+    },
+    {
+        "id": "cnc_spindle_gauge",
+        "type": "ui_gauge",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Spindle Speed",
+        "group": "cnc_group_123",
+        "order": 3,
+        "width": "6",
+        "height": "5",
+        "gtype": "donut",
+        "title": "Spindle Speed",
+        "label": "RPM",
+        "format": "{{value | number:0}}",
+        "min": 0,
+        "max": "5000",
+        "colors": [
+            "#30D158",
+            "#007AFF",
+            "#FF9F0A"
+        ],
+        "seg1": "1000",
+        "seg2": "4000",
+        "className": "apple-gauge",
+        "x": 790,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "cnc_fault_extract",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract Fault Code",
+        "func": "if (msg.payload && msg.payload.fault_code !== undefined) {\n    var faultText = msg.payload.fault_code === 0 ? 'All Systems Normal' : 'Alert: Code ' + msg.payload.fault_code;\n    var color = msg.payload.fault_code === 0 ? '#30D158' : '#FF453A';\n    msg.payload = {\n        text: faultText,\n        color: color\n    };\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 860,
+        "wires": [
+            [
+                "cnc_fault_display"
+            ]
+        ]
+    },
+    {
+        "id": "cnc_fault_display",
+        "type": "ui_text",
+        "z": "d1b7d8c.8f9e1f",
+        "group": "cnc_group_123",
+        "order": 4,
+        "width": "6",
+        "height": "3",
+        "name": "CNC Status",
+        "label": "Machine Status",
+        "format": "<div class='status-indicator'><span class='status-dot' style='background-color: {{msg.payload.color}}'></span>{{msg.payload.text}}</div>",
+        "layout": "row-center",
+        "className": "apple-status",
+        "style": true,
+        "font": "-apple-system,BlinkMacSystemFont,'SF Pro Display'",
+        "fontSize": "16",
+        "color": "#FFFFFF",
+        "x": 780,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "cnc_performance_calc",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Calculate CNC Performance",
+        "func": "if (msg.payload) {\n    var temp = msg.payload.temperature || 0;\n    var vibration = msg.payload.vibration || 0;\n    var speed = msg.payload.spindle_speed || 0;\n    \n    // Calculate performance score based on optimal ranges\n    var tempScore = temp > 25 && temp < 75 ? 100 : Math.max(0, 100 - Math.abs(temp - 50));\n    var vibScore = vibration < 3 ? 100 : Math.max(0, 100 - (vibration - 3) * 20);\n    var speedScore = speed > 1000 && speed < 4000 ? 100 : Math.max(0, 100 - Math.abs(speed - 2500) / 25);\n    \n    var performance = (tempScore + vibScore + speedScore) / 3;\n    msg.payload = Math.round(performance * 10) / 10;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 920,
+        "wires": [
+            [
+                "cnc_performance_display"
+            ]
+        ]
+    },
+    {
+        "id": "cnc_performance_display",
+        "type": "ui_gauge",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "CNC Performance",
+        "group": "cnc_analytics_group",
+        "order": 1,
+        "width": "12",
+        "height": "4",
+        "gtype": "compass",
+        "title": "CNC Performance Score",
+        "label": "%",
+        "format": "{{value | number:1}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#FF453A",
+            "#FF9F0A",
+            "#30D158"
+        ],
+        "seg1": "60",
+        "seg2": "85",
+        "className": "apple-performance",
+        "x": 800,
+        "y": 920,
+        "wires": []
+    }
+]

@@ -1,0 +1,646 @@
+[
+    {
+        "id": "d1b7d8c.8f9e1f",
+        "type": "tab",
+        "label": "Smart Factory Data Flow",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a1b2c3d.4e5f6g",
+        "type": "mqtt-broker",
+        "name": "Mosquitto Broker",
+        "broker": "mosquitto",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true
+    },
+    {
+        "id": "h4i5j6k.7l8m9n",
+        "type": "mongodb",
+        "hostname": "mongodb",
+        "port": "27017",
+        "db": "smart_factory",
+        "name": "MongoDB Smart Factory"
+    },
+    {
+        "id": "k7l8m9n.0o1p2q",
+        "type": "ui_tab",
+        "name": "Smart Factory Dashboard",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "j6k7l8m.9n0o1p",
+        "type": "ui_group",
+        "name": "PLC Data",
+        "tab": "k7l8m9n.0o1p2q",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "cnc_group_123",
+        "type": "ui_group",
+        "name": "CNC Machine Data",
+        "tab": "k7l8m9n.0o1p2q",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "4e1b1ed709f266ac",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Industrial Theme",
+                "default": "#FF6B35",
+                "baseColor": "#FF6B35",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#FF6B35",
+                    "value": "#FF6B35",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#2C3E50",
+                    "edited": true
+                },
+                "page-backgroundColor": {
+                    "value": "#34495E",
+                    "edited": true
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#2C3E50",
+                    "edited": true
+                },
+                "group-textColor": {
+                    "value": "#ECF0F1",
+                    "edited": true
+                },
+                "group-borderColor": {
+                    "value": "#FF6B35",
+                    "edited": true
+                },
+                "group-backgroundColor": {
+                    "value": "#34495E",
+                    "edited": true
+                },
+                "widget-textColor": {
+                    "value": "#ECF0F1",
+                    "edited": true
+                },
+                "widget-backgroundColor": {
+                    "value": "#2C3E50",
+                    "edited": true
+                },
+                "widget-borderColor": {
+                    "value": "#FF6B35",
+                    "edited": true
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "orange",
+                "accents": "deep-orange",
+                "warn": "red",
+                "background": "grey",
+                "palette": "dark"
+            }
+        },
+        "site": {
+            "name": "Smart Factory Control Center",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY HH:mm:ss",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 2,
+                "py": 2
+            }
+        }
+    },
+    {
+        "id": "e6f7g8h.9a0b1c",
+        "type": "mqtt in",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "PLC Data In",
+        "topic": "plc/data",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "a1b2c3d.4e5f6g",
+        "inputs": 0,
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "g3h4i5j.6k7l8m",
+                "s5t6u7v.8w9x0y",
+                "f2g3h4i.5j6k7l"
+            ]
+        ]
+    },
+    {
+        "id": "cnc_mqtt_in",
+        "type": "mqtt in",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "CNC Data In",
+        "topic": "cnc/data",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "a1b2c3d.4e5f6g",
+        "inputs": 0,
+        "x": 110,
+        "y": 600,
+        "wires": [
+            [
+                "cnc_debug",
+                "cnc_mongodb",
+                "cnc_router"
+            ]
+        ]
+    },
+    {
+        "id": "cnc_debug",
+        "type": "debug",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Debug CNC Data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "g3h4i5j.6k7l8m",
+        "type": "mongodb out",
+        "z": "d1b7d8c.8f9e1f",
+        "mongodb": "h4i5j6k.7l8m9n",
+        "name": "Store PLC to MongoDB",
+        "collection": "plc_data",
+        "x": 380,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cnc_mongodb",
+        "type": "mongodb out",
+        "z": "d1b7d8c.8f9e1f",
+        "mongodb": "h4i5j6k.7l8m9n",
+        "name": "Store CNC to MongoDB",
+        "collection": "cnc_data",
+        "x": 380,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "s5t6u7v.8w9x0y",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Route PLC Dashboard Data",
+        "func": "// Route the same data to multiple dashboard components\nreturn [msg, msg, msg, msg, msg];",
+        "outputs": 5,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 350,
+        "wires": [
+            [
+                "l8m9n0o.1p2q3r"
+            ],
+            [
+                "n0o1p2q.3r4s5t"
+            ],
+            [
+                "p2q3r4s.5t6u7v"
+            ],
+            [
+                "r4s5t6u.7v8w9x"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "cnc_router",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Route CNC Dashboard Data",
+        "func": "// Route the same data to multiple CNC dashboard components\nreturn [msg, msg, msg, msg];",
+        "outputs": 4,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 720,
+        "wires": [
+            [
+                "cnc_temp_extract"
+            ],
+            [
+                "cnc_vibration_extract"
+            ],
+            [
+                "cnc_spindle_extract"
+            ],
+            [
+                "cnc_fault_extract"
+            ]
+        ]
+    },
+    {
+        "id": "l8m9n0o.1p2q3r",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract Pressure",
+        "func": "if (msg.payload && msg.payload.analog_inputs && msg.payload.analog_inputs.pressure) {\n    msg.payload = msg.payload.analog_inputs.pressure;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 260,
+        "wires": [
+            [
+                "i5j6k7l.8m9n0o"
+            ]
+        ]
+    },
+    {
+        "id": "i5j6k7l.8m9n0o",
+        "type": "ui_gauge",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Pressure Gauge",
+        "group": "j6k7l8m.9n0o1p",
+        "order": 1,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "System Pressure",
+        "label": "PSI",
+        "format": "{{value | number:1}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00C851",
+            "#ffbb33",
+            "#FF4444"
+        ],
+        "seg1": "30",
+        "seg2": "70",
+        "x": 780,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "n0o1p2q.3r4s5t",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract Flow Rate",
+        "func": "if (msg.payload && msg.payload.analog_inputs && msg.payload.analog_inputs.flow_rate) {\n    msg.payload = msg.payload.analog_inputs.flow_rate;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 320,
+        "wires": [
+            [
+                "m9n0o1p.2q3r4s"
+            ]
+        ]
+    },
+    {
+        "id": "m9n0o1p.2q3r4s",
+        "type": "ui_gauge",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Flow Rate Gauge",
+        "group": "j6k7l8m.9n0o1p",
+        "order": 2,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Flow Rate",
+        "label": "L/min",
+        "format": "{{value | number:1}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00C851",
+            "#ffbb33",
+            "#FF4444"
+        ],
+        "seg1": "15",
+        "seg2": "35",
+        "x": 790,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "p2q3r4s.5t6u7v",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract Motor Status",
+        "func": "if (msg.payload && msg.payload.output_states && msg.payload.output_states.motor_running !== undefined) {\n    msg.payload = msg.payload.output_states.motor_running;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 380,
+        "wires": [
+            [
+                "o1p2q3r.4s5t6u"
+            ]
+        ]
+    },
+    {
+        "id": "o1p2q3r.4s5t6u",
+        "type": "ui_switch",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Motor Running",
+        "label": "Motor Status",
+        "tooltip": "Motor Running Status",
+        "group": "j6k7l8m.9n0o1p",
+        "order": 3,
+        "width": "6",
+        "height": "2",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "fa-play",
+        "oncolor": "#00C851",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "fa-stop",
+        "offcolor": "#FF4444",
+        "animate": true,
+        "x": 780,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "r4s5t6u.7v8w9x",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract Error Code",
+        "func": "if (msg.payload && msg.payload.error_codes !== undefined) {\n    msg.payload = msg.payload.error_codes || 'No Errors';\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 440,
+        "wires": [
+            [
+                "q3r4s5t.6u7v8w"
+            ]
+        ]
+    },
+    {
+        "id": "q3r4s5t.6u7v8w",
+        "type": "ui_text",
+        "z": "d1b7d8c.8f9e1f",
+        "group": "j6k7l8m.9n0o1p",
+        "order": 4,
+        "width": "6",
+        "height": "2",
+        "name": "Error Code",
+        "label": "System Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "x": 770,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "cnc_temp_extract",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract CNC Temperature",
+        "func": "if (msg.payload && msg.payload.temperature !== undefined) {\n    msg.payload = msg.payload.temperature;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 680,
+        "wires": [
+            [
+                "cnc_temp_gauge"
+            ]
+        ]
+    },
+    {
+        "id": "cnc_temp_gauge",
+        "type": "ui_gauge",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "CNC Temperature",
+        "group": "cnc_group_123",
+        "order": 1,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "CNC Temperature",
+        "label": "°C",
+        "format": "{{value | number:1}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00C851",
+            "#ffbb33",
+            "#FF4444"
+        ],
+        "seg1": "50",
+        "seg2": "75",
+        "x": 800,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "cnc_vibration_extract",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract Vibration",
+        "func": "if (msg.payload && msg.payload.vibration !== undefined) {\n    msg.payload = msg.payload.vibration;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 740,
+        "wires": [
+            [
+                "cnc_vibration_gauge"
+            ]
+        ]
+    },
+    {
+        "id": "cnc_vibration_gauge",
+        "type": "ui_gauge",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Vibration Level",
+        "group": "cnc_group_123",
+        "order": 2,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Vibration Level",
+        "label": "mm/s",
+        "format": "{{value | number:2}}",
+        "min": 0,
+        "max": "10",
+        "colors": [
+            "#00C851",
+            "#ffbb33",
+            "#FF4444"
+        ],
+        "seg1": "3",
+        "seg2": "6",
+        "x": 790,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "cnc_spindle_extract",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract Spindle Speed",
+        "func": "if (msg.payload && msg.payload.spindle_speed !== undefined) {\n    msg.payload = msg.payload.spindle_speed;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 800,
+        "wires": [
+            [
+                "cnc_spindle_gauge"
+            ]
+        ]
+    },
+    {
+        "id": "cnc_spindle_gauge",
+        "type": "ui_gauge",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Spindle Speed",
+        "group": "cnc_group_123",
+        "order": 3,
+        "width": "6",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Spindle Speed",
+        "label": "RPM",
+        "format": "{{value | number:0}}",
+        "min": 0,
+        "max": "5000",
+        "colors": [
+            "#FF4444",
+            "#00C851",
+            "#ffbb33"
+        ],
+        "seg1": "1000",
+        "seg2": "4000",
+        "x": 790,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "cnc_fault_extract",
+        "type": "function",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Extract Fault Code",
+        "func": "if (msg.payload && msg.payload.fault_code !== undefined) {\n    var faultText = msg.payload.fault_code === 0 ? 'No Faults' : 'Fault Code: ' + msg.payload.fault_code;\n    msg.payload = faultText;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 860,
+        "wires": [
+            [
+                "cnc_fault_display"
+            ]
+        ]
+    },
+    {
+        "id": "cnc_fault_display",
+        "type": "ui_text",
+        "z": "d1b7d8c.8f9e1f",
+        "group": "cnc_group_123",
+        "order": 4,
+        "width": "6",
+        "height": "2",
+        "name": "Fault Status",
+        "label": "CNC Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "x": 780,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "f2g3h4i.5j6k7l",
+        "type": "debug",
+        "z": "d1b7d8c.8f9e1f",
+        "name": "Debug PLC Data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 100,
+        "wires": []
+    }
+]
