@@ -52,4 +52,6 @@ Detailed setup instructions will be provided in a separate documentation file.
 6. Python batch job reads MongoDB, runs anomaly detection, and flags issues.
 7. Alerts are shown in Grafana or via Node-RED dashboard.
 
-
+cd simulators && python3 cnc_simulator.py
+cd simulators && python3 plc_simulator.py   
+python3 -m venv .venv && source .venv/bin/activate && pip install jupyter && jupyter notebook
